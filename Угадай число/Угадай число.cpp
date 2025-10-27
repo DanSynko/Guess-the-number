@@ -2,23 +2,28 @@
 #include <iostream>
 #include <random>
 #include <limits>
+int random_num_generator(){
+    std::random_device seed; 
+    std::mt19937 engine(seed());
+    std::uniform_int_distribution<int> dist(1, 50);
+    int rand_num = dist(engine);
+    return rand_num; 
+}
 
 int main()
 {
     setlocale(LC_ALL, "RU");
 
-    std::random_device seed; 
-    std::mt19937 engine(seed());
-    std::uniform_int_distribution<int> dist(1, 50);
-    int CPU_num = dist(engine);
     int user_num;
-    std::cout << "Компьютером было загадано число от 1 до 50. ";
-    // для отладки
-    std::cout << CPU_num << std::endl;
-    std::cout << "Введите любое число в заданом диапазоне и узнайте, отгадали ли вы.\n" << std::endl;
     int attempts = 1;
     bool in_program = true;
+    
     while (in_program) {
+        int CPU_num = random_num_generator();
+        std::cout << "Компьютером было загадано число от 1 до 50. ";
+        // для отладки
+        std::cout << CPU_num << std::endl;
+        std::cout << "Введите любое число в заданом диапазоне и узнайте, отгадали ли вы.\n" << std::endl; 
         std::cin >> user_num;
         if (std::cin.fail()) {
             do {
