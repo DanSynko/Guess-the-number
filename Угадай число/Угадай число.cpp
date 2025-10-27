@@ -1,5 +1,4 @@
-﻿//#define NOMINMAX
-#include <iostream>
+﻿#include <iostream>
 #include <random>
 #include <limits>
 int random_num_generator(){
@@ -9,69 +8,61 @@ int random_num_generator(){
     int rand_num = dist(engine);
     return rand_num; 
 }
+void error_check(int& a) {
+    std::cin >> a;
+    if (std::cin.fail()) {
+        do {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Ошибка: введён символ вместо числа. Попробуйте еще раз." << std::endl;
+            std::cin >> a;
+        } while (std::cin.fail());
+    }
+}
+
 
 int main()
 {
     setlocale(LC_ALL, "RU");
 
-    int user_num;
-    int attempts = 1;
-    bool in_program = true;
+    int attempts = 0;
     
-    while (in_program) {
+    while (true) {
         int CPU_num = random_num_generator();
+        attempts = 0;
+        int user_num;
         std::cout << "Компьютером было загадано число от 1 до 50. ";
         // для отладки
         std::cout << CPU_num << std::endl;
-        std::cout << "Введите любое число в заданом диапазоне и узнайте, отгадали ли вы.\n" << std::endl; 
-        std::cin >> user_num;
-        if (std::cin.fail()) {
-            do {
-                std::cin.clear();
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                std::cout << "Ошибка: введен символ вместо числа. Попробуйте еще раз" << std::endl;
-                std::cin >> user_num;
-            } while (std::cin.fail());
-        }
-        else {
-            continue;
-        }
+        std::cout << "Введите любое число в заданом диапазоне и узнайте, отгадали ли вы.\n" << std::endl;
+        error_check(user_num);
         if (user_num != CPU_num) {
-            if (CPU_num < 25) {
-                std::cout << "Подсказка: загаданное число меньше 25" << std::endl;
-                attempts++;
-            }
-            else {
-                std::cout << "Подсказка: загаданное число больше 25" << std::endl;
-                attempts++;
-            }
-        }
-        else {
-            std::cout << "Вы угадали! Компьютером было задано такое число: " << CPU_num << "\n";
-            std::cout << "Количество потраченных попыток: " << attempts << "\n" << std::endl;
-            std::cout << "Желаете сыграть еще раз?(1 - да, 0 - нет)" << "\n" << std::endl;
-            int choice;
-            std::cin >> choice;
             do {
-                if (choice == 0) {
-                    in_program = false;
+                if (CPU_num < user_num) {
+                    std::cout << "Подсказка: загаданное число меньше " << user_num << std::endl;
                 }
-                else if (choice == 1) {
-                    break;
+                else if (CPU_num > user_num) {
+                    std::cout << "Подсказка: загаданное число больше " << user_num << std::endl;
                 }
-                else {
-                    do {
-                        std::cin.clear();
-                        std::cout << "Такой команды нет. Попробуйте еще раз." << std::endl;
-                        std::cin >> choice;
-                    } while (std::cin.fail());
-                }
+                attempts++;
+                error_check(user_num);
+            } while (user_num != CPU_num);
+        }
+        std::cout << "Вы угадали! Компьютером было задано такое число: " << CPU_num << "\n";
+        std::cout << "Счётчик попыток за игру: " << attempts << "\n" << std::endl;
+        std::cout << "Желаете сыграть еще раз?(1 - да, 0 - нет)" << "\n" << std::endl;
+        int choice;
+        error_check(choice);
+        if (choice != 1 && choice != 0) {
+            do {
+                std::cout << "Такой команды нет. Попробуйте еще раз." << std::endl;
+                error_check(choice);
             } while (choice != 1 && choice != 0);
         }
-        if (in_program) {
+        if (choice == 1) {
             continue;
         }
-        else {
+        else if (choice == 0) {
             break;
         }
     }
