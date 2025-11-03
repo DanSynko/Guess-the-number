@@ -68,9 +68,6 @@ public:
             }
         }
     }
-    int get_rand_num() {
-        return rand_num;
-    }
 };
 
 int main()
