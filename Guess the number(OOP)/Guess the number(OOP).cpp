@@ -72,8 +72,8 @@ public:
 
 int main()
 {
-    Game computer;
-    computer.run();
+    Game game;
+    game.run();
 
     return 0;
 }
