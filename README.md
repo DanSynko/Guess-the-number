@@ -1,5 +1,16 @@
-"Guess the number" was my first pet-project on C++. Here I learned about the `<random>` library and some functions for error-checking. At first, I had written it using the procedural paradigm. Then I rewrote it using OOP.
+# Guess the number
 
-In my pet projects, I use AI for error-finding and solutions, but I try to solve them myself.
+This project was my first pet-project on C++. Here I learned about the `<random>` library and some functions for error-checking.
 
-(now my English-level is not good so i use AI for this too, i apologise)
+This project was created as a learning exercise to practice C++ programming skills. It is a simple console-based To-Do list application.
+
+## What I learned while working on the project:
+
+*  **<random> library instead of rand():** How it works and how to work with him.
+*  **OOP:** The first version of the project was written in the procedural paradigm. Then i rewrote it using OOP and writing the logic of project before the main().
+*  **Input Validation and Error Handling:** Learned mechanisms for validating user input and processing errors.
+
+
+## Technologies
+*  **Language:** C++20.
+*  **IDE:** Visual Studio 2022.
