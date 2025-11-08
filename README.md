@@ -6,7 +6,7 @@ This project was created as a learning exercise to practice C++ programming skil
 
 ## What I learned while working on the project:
 
-*  ** <random>-library instead of rand():** How it works and how to work with him.
+*  ** "<random>" library instead of rand():** How it works and how to work with him.
 *  **OOP:** The first version of the project was written in the procedural paradigm. Then i rewrote it using OOP and writing the logic of project before the main().
 *  **Input Validation and Error Handling:** Learned mechanisms for validating user input and processing errors.
 
